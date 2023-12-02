@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mt-4">
+    TODO list
+    <a href="{% url 'list:task-create' %}" class="btn btn-primary link-to-page float-right">
+      Create
+    </a>
+  </h1>
+  {% if task_list %}
+
+      {% for task in task_list %}
+        <h3>{{ task.content }}</h3>
+      {% if task.done == False %}
+          <p class="btn btn-success link-to-page float-right">
+            Complete
+          </p>
+      {% else %}
+        <p class="btn btn-secondary link-to-page float-right">
+            Undo
+          </p>
+      {% endif %}
+        <p>Created: {{ task.datetime }}</p>
+        <p class="color-gray">Tags: home shop <a href="{% url 'list:task-update' pk=task.id %}">Update</a> <a href="{% url 'list:task-delete' pk=task.id %}">Delete</a></p>
+      {% endfor %}
+
+  {% else %}
+    <p>There are no task</p>
+  {% endif %}
+{% endblock %}
+
