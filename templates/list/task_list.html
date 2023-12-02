@@ -12,13 +12,13 @@
       {% for task in task_list %}
         <h3>{{ task.content }}</h3>
       {% if task.done == False %}
-          <p class="btn btn-success link-to-page float-right">
+          <a href="{% url 'list:task-update' pk=task.id %}" class="btn btn-success link-to-page float-right">
             Complete
-          </p>
+          </a>
       {% else %}
-        <p class="btn btn-secondary link-to-page float-right">
+        <a href="{% url 'list:task-update' pk=task.id %}" class="btn btn-secondary link-to-page float-right">
             Undo
-          </p>
+          </a>
       {% endif %}
         <p>Created: {{ task.datetime }}</p>
         <p class="color-gray">Tags: home shop <a href="{% url 'list:task-update' pk=task.id %}">Update</a> <a href="{% url 'list:task-delete' pk=task.id %}">Delete</a></p>
