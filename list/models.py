@@ -13,7 +13,7 @@ class Task(models.Model):
     datetime = models.DateTimeField(auto_now=True)
     deadline = models.DateTimeField(null=True, blank=True)
     done = models.BooleanField()
-    tags = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name="task")
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name="tasks")
 
     def __str__(self):
         return self.content
