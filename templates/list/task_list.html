@@ -10,7 +10,14 @@
   {% if task_list %}
 
       {% for task in task_list %}
-        <h3>{{ task.content }}</h3>
+        <h3>
+          {{ task.content }}
+          {% if task.done == False %}
+            <span class="text-danger">Not done</span>
+          {% else %}
+            <span class="text-success">Done</span>
+          {% endif %}
+        </h3>
       {% if task.done == False %}
           <a href="{% url 'list:task-update' pk=task.id %}" class="btn btn-success link-to-page float-right">
             Complete
